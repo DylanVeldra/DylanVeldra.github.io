@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="Scripts/Lists.js"></script>
+		<script type="text/javascript" src="Scripts/Ammo.js"></script>
+		<script type="text/javascript" src="Scripts/Weapons.js"></script>
+		<script type="text/javascript" src="Scripts/Armor.js"></script>
+		<script type="text/javascript" src="Scripts/NPCs.js"></script>
+		<script type="text/javascript" src="Scripts/i18n.js"></script>
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+	</head>
+	
+	<body style="background-color:#665533;">
+		<div>
+			<textarea class="screen" id="results" onChange="printToResults(results.value, true)" rows="20" cols="102" style="resize: none;"></textarea>
+			<img src="Images/fallout-title.png" width="150px">
+			<input class="myButton" type="button" onclick="clearList()" value="Clear List"  style="vertical-align:top;">
+			<label class="switch"  style="vertical-align:top;">
+				<input type="checkbox" id="luck">
+				<span class="slider round"></span>
+			</label>
+			<label style="color:#DDCC66; vertical-align:top;">Use Luck Point</label>
+			<textarea id="converter" style="display:none;"></textarea>
+		</div>
+		
+		<!-- Tab links -->
+		<div class="tab">
+			<button class="tablinks" onclick="openTab(event, 'Specific Loot')" id="defaultOpen">Specific Loot</button>
+			<button class="tablinks" onclick="openTab(event, 'Containers')">Containers</button>
+			<button class="tablinks" onclick="openTab(event, 'NPCs')">NPCs</button>
+		</div>
+
+		<!-- Tab content -->
+		<div id="Specific Loot" class="tabcontent">
+			<table>
+				<tr>
+					<td>
+						<input value="Ammo" onclick="getStuff(listAmmo)" class="myButton" type="button">
+						<input value="Armor" onclick="getStuff(listArmor)" class="myButton" type="button">
+						<input value="Beverages" onclick="getStuff(listBeverage)" class="myButton" type="button">
+						<input value="Chems" onclick="getStuff(listChem)" class="myButton" type="button">
+						<input value="Clothing" onclick="getStuff(listClothing)" class="myButton" type="button">
+						<input value="Food" onclick="getStuff(listFood)" class="myButton" type="button">
+						<input value="Foraging" onclick="getStuff(listForaging, 1)" class="myButton" type="button">
+						<input value="Magazine" onclick="getMagazine(true)" class="myButton" type="button">
+						<input value="Materials" onclick="getStuff(listMaterials, 1)" class="myButton" type="button">
+						<input value="Melee Weapons" onclick="getStuff(listMelee)" class="myButton" type="button">
+						<input value="Nuka-Cola" onclick="getStuff(listNuka, 1)" class="myButton" type="button">
+						<input value="Oddities and Valuables" onclick="getStuff(listOdd, 3)" class="myButton" type="button">
+						<input value="Ranged Weapons" onclick="getStuff(listRange)" class="myButton" type="button">
+						<input value="Thrown/Explosive Weapons" onclick="getStuff(listThrown)" class="myButton" type="button">
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="Containers" class="tabcontent">
+			<table>
+				<tr>
+					<td>
+						<input value="Ammo Box" onclick="getStuff(listAmmo, 2, 1, 3)" class="myButton" type="button">
+						<input value="Armor Case" onclick="getModdedArmor(listModdableArmor)" class="myButton" type="button">
+						<input value="Cash Register" onclick="getStuff(listMoney, 1)" class="myButton" type="button">
+						<input value="Cooler" onclick="getStuff(listChem, 2, rollDie(3)-1); getStuff(listFood, 2, rollDie(3))" class="myButton" type="button">
+						<input value="Duffle Bag" onclick="getStuff(listMelee, 2, rollDie(2)-1); getStuff(listRange, 2, rollDie(2)-1); getStuff(listThrown, 2, rollDie(2)-1); getStuff(listAmmo, 2, rollDie(2))" class="myButton" type="button">
+						<input value="Dresser" onclick="getStuff(listClothing, 1, rollDie(4)-1)" class="myButton" type="button">
+						<input value="Farm Plot" onclick="getStuff(listForaging, 1, rollDie(4))" class="myButton" type="button">
+						<input value="First-Aid Kit" onclick="getStuff(listChem, 2, rollDie(6))" class="myButton" type="button">
+						<input value="Ice Cooler" onclick="getStuff(listFood, 2, rollDie(3)-1); getStuff(listBeverage, 2, rollDie(3)-1)" class="myButton" type="button">
+						<input value="Locker" onclick="getStuff(listMaterials, 1, rollDie(3)-1); getStuff(listAmmo, 1, rollDie(2)-1); getStuff(listClothing, 1, rollDie(2)-1)" class="myButton" type="button">
+						<input value="Meat Bag" onclick="getStuff(listAmmo, 1, rollDie(2)-1); getStuff(listOdd, 1, rollDie(2)-1)" class="myButton" type="button">
+						<input value="Nuka-Cola Machine" onclick="getStuff(listNuka, 1, rollDie(3)-1); getStuff(listMaterials, 1, rollDie(3)-1)" class="myButton" type="button">
+						<input value="Safe" onclick="getStuff(listMoney, 1, rollDie(3)-1); getStuff(listMaterials, 1, rollDie(3)-1); getStuff(listRange, 1, rollDie(2)-1); getStuff(listOdd, 1, rollDie(3)-1)" class="myButton" type="button">
+						<input value="Steamer Trunk" onclick="getStuff(listArmor, 1, rollDie(2)-1); getStuff(listMelee, 2, rollDie(2)-1); getStuff(listRange, 2, rollDie(2)-1); getStuff(listThrown, 2, rollDie(2)-1); getStuff(listAmmo, 2, rollDie(2))" class="myButton" type="button">
+						<input value="Suitcase" onclick="getStuff(listClothing, 1, rollDie(3)-1); getStuff(listMaterials, 1, rollDie(3)-1); getStuff(listOdd, 1, rollDie(3)-1)" class="myButton" type="button">
+						<input value="Toolbox" onclick="getStuff(listMaterials, 1, rollDie(5)); getStuff(listOdd, 1, rollDie(2)-1)" class="myButton" type="button">
+						<input value="Trash" onclick="getStuff(listMaterials, 1, rollDie(5))" class="myButton" type="button">
+						<input value="Weapon Case" onclick="getModdedWeapon(listModdableWeapons)" class="myButton" type="button">
+						<input value="Wooden Crate" onclick="getStuff(listThrown, 1, 1, 10)" class="myButton" type="button">
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="NPCs" class="tabcontent">
+			<table>
+				<tr>
+					<td>
+						<label style="color:#DDCC66;">NPC Level
+							<input value="1" class="myNumber" type="number" min="1" max="50" onChange="levelCheck()" id="npcLevel">
+						</label>
+					</td>
+					<td>
+						<input value="Random NPC" onclick="getNPC(0)" class="myButton" type="button">
+						<input value="Random Brotherhood" onclick="getNPC(1)" class="myButton" type="button">
+						<input value="Random Ghoul" onclick="getNPC(2)" class="myButton" type="button">
+						<input value="Random Super Mutant" onclick="getNPC(3)" class="myButton" type="button">
+						<input value="Random Mister Handy" onclick="getNPC(4)" class="myButton" type="button">
+						<input value="Random Survivor" onclick="getNPC(5)" class="myButton" type="button">
+						<input value="Random Vault Dweller" onclick="getNPC(6)" class="myButton" type="button">
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<br>
+		<label style="color:#DDCC66;">* Characters with the Scavenger perk receive only +1 DC per rank additional Missiles.</label>
+		<br>
+		<label style="color:#DDCC66;">** Characters with the Scavenger perk do not receive any additional Fusion Cores or Mini-Nukes.</label>
+		<br><br>
+		<label style="color:#DDCC66;">See Survival and Equipment in the Core Rulebook for the related tables. Though, there have been some edits made for a more inclusive loot find.</label>
+	</body>
+	
+	<script type="text/javascript" src="Scripts/Main.js"></script>
+	
+	<style type="text/css">
+	.myButton{
+		display:inline-block;
+		font-family:'Fira Mono', monospace;
+		font-size:12px;
+		width: 180px;
+		height: 30px;
+		color: #DDCC66;
+		background-color: #58410F;
+		border-radius: 8px;
+	}
+	
+	.myNumber {
+		animation:colorPulse 5s infinite ease-in-out;
+		background-image:radial-gradient(#444, #111);
+		box-shadow:0 0 5vmin 1vmin #000 inset;
+		box-sizing:border-box;
+		font-family:'Fira Mono', monospace;
+		font-size:12px;
+		display:inline-block;
+	}
+	
+	input[type=number]::-webkit-inner-spin-button, 
+	input[type=number]::-webkit-outer-spin-button { 
+		-webkit-appearance: none; 
+		margin: 0; 
+	}
+	
+	input[type=number] { 
+		-moz-appearance: textfield;
+		appearance: textfield;
+		margin: 0; 
+	}
+
+	.switch {
+		position: relative;
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+	}
+
+	.switch input {
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #59190f;
+		-webkit-transition: .4s;
+		transition: .4s;
+	}
+
+	input:checked + .slider {
+		background-color: #DDCC66;
+	}
+
+	.slider.round {
+		border-radius: 15px;
+	}
+
+	.slider.round:before {
+		border-radius: 50%;
+	}
+
+	.screen {
+		animation:colorPulse 5s infinite ease-in-out;
+		background-image:radial-gradient(#444, #111);
+		box-shadow:0 0 5vmin 1vmin #000 inset;
+		box-sizing:border-box;
+		font-family:'Fira Mono', monospace;
+		font-size:12px;
+		display:inline-block;
+		height:50vh;
+		padding:3vmin;
+		width:100%;
+		border:5px solid #333;
+		border-radius:20px;
+		margins:10px;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}		
+	
+	.screen::-webkit-scrollbar {
+		display: none;
+	}
+
+	@keyframes colorPulse {
+		0%, 100% {
+		color:#0c0;
+		}
+		48%, 52% {
+		color:#090;
+		}
+		50% {
+		color:#060;
+		}
+	}
+	
+	.tab {
+		overflow: hidden;
+		border: 1px solid #58410F;
+		background-color: #58410F;
+		border-radius: 8px;
+	}
+
+	.tab button {
+		background-color: inherit;
+		float: left;
+		border: none;
+		outline: none;
+		cursor: pointer;
+		padding: 14px 16px;
+		transition: 0.3s;
+		color: #DDCC66;
+		border-radius: 8px;
+	}
+
+	.tab button:hover {
+		background-color: #592a0f;
+	}
+
+	.tab button.active {
+		background-color: #59190f;
+	}
+
+	.tabcontent {
+		display: none;
+		padding: 6px 6px;
+		border: 3px solid #58410F;
+		border-top: none;
+		border-radius: 8px;
+	}
+	</style>
+</html> 
