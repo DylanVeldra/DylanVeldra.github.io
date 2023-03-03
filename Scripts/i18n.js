@@ -4,8 +4,7 @@ let currentLanguage = "fr"
 const switchLanguage = (language = null) => {
     if (language) {
         currentLanguage = language
-    }
-    else if (currentLanguage === "fr") {
+    } else if (currentLanguage === "fr") {
         currentLanguage = "en"
     } else {
         currentLanguage = "fr"
