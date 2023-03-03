@@ -6,6 +6,7 @@ class Item {
 	rarity = 0
 	getName = (plural = false) => (i18n[currentLanguage].item[this.category][this.id][plural ? "pluralName" : "name"])
 	getDesc = () => (i18n[currentLanguage].item[this.category][this.id].desc)
+	rollExtraQuantity = () => (0)
 }
 
 // todo replace by typescript type

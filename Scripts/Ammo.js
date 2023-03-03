@@ -1,14 +1,27 @@
 
-class TwoMMEC extends Item {
+class Ammo extends Item {
+    rollExtraQuantity = () => {
+        switch (scavengerPerk.value) {
+            case ("1"):
+                return exctractTotalDEValueFromEffectDices(rollEffectsDices(3))
+            case ("2"):
+                return exctractTotalDEValueFromEffectDices(rollEffectsDices(6))
+            case ("3"):
+                return exctractTotalDEValueFromEffectDices(rollEffectsDices(10))
+        }
+        return 0;
+    }
+}
+
+class TwoMMEC extends Ammo {
     weight = 0
     value = 10
     id = "twoMMEC"
     category = "ammo"
     rarity = 5
-
 }
 
-class PlasmaCartridge extends Item {
+class PlasmaCartridge extends Ammo {
     weight = 0
     value = 5
     id = "plasmaCartridge"
@@ -16,24 +29,28 @@ class PlasmaCartridge extends Item {
     rarity = 4
 }
 
-class Missile extends Item {
+class Missile extends Ammo {
     weight = 3.5
     value = 25
     id = "missile"
     category = "ammo"
     rarity = 3
+    rollExtraQuantity = () => {
+        return exctractTotalDEValueFromEffectDices(rollEffectsDices(parseInt(scavengerPerk.value, 10)))
+    }
 }
 
 
-class FusionCore extends Item {
+class FusionCore extends Ammo {
     weight = 2
     value = 200
     id = "fusionCore"
     category = "ammo"
     rarity = 3
+    rollExtraQuantity = () => (0)
 }
 
-class FiveMM extends Item {
+class FiveMM extends Ammo {
     weight = 0
     value = 1
     id = "fiveMM"
@@ -41,63 +58,63 @@ class FiveMM extends Item {
     rarity = 3
 }
 
-class Point50 extends Item {
+class Point50 extends Ammo {
     weight = 0
     value = 4
     id = "point50"
     category = "ammo"
     rarity = 3
 }
-class Syringe extends Item {
+class Syringe extends Ammo {
     weight = 0
     value = 2
     id = "syringe"
     category = "ammo"
     rarity = 2
 }
-class GammaCartridge extends Item {
+class GammaCartridge extends Ammo {
     weight = 0
     value = 10
     id = "gammaCartridge"
     category = "ammo"
     rarity = 2
 }
-class FlamerFuel extends Item {
+class FlamerFuel extends Ammo {
     weight = 0
     value = 1
     id = "flamerFuel"
     category = "ammo"
     rarity = 2
 }
-class Point45 extends Item {
+class Point45 extends Ammo {
     weight = 0
     value = 3
     id = "point45"
     category = "ammo"
     rarity = 2
 }
-class TenMM extends Item {
+class TenMM extends Ammo {
     weight = 0
     value = 2
     id = "tenMM"
     category = "ammo"
     rarity = 0
 }
-class Point38 extends Item {
+class Point38 extends Ammo {
     weight = 0
     value = 1
     id = "point38"
     category = "ammo"
     rarity = 0
 }
-class Flare extends Item {
+class Flare extends Ammo {
     weight = 0
     value = 1
     id = "flare"
     category = "ammo"
     rarity = 1
 }
-class Point308 extends Item {
+class Point308 extends Ammo {
     weight = 0
     value = 3
     id = "point308"
@@ -105,7 +122,7 @@ class Point308 extends Item {
     rarity = 1
 }
 
-class Point12 extends Item {
+class Point12 extends Ammo {
     weight = 0
     value = 3
     id = "point12"
@@ -113,7 +130,7 @@ class Point12 extends Item {
     rarity = 1
 }
 
-class FusionCell extends Item {
+class FusionCell extends Ammo {
     weight = 0
     value = 3
     id = "fusionCell"
@@ -121,7 +138,7 @@ class FusionCell extends Item {
     rarity = 2
 }
 
-class RailwaySpike extends Item {
+class RailwaySpike extends Ammo {
     weight = 0
     value = 1
     id = "railwaySpike"
@@ -129,7 +146,7 @@ class RailwaySpike extends Item {
     rarity = 2
 }
 
-class Point44 extends Item {
+class Point44 extends Ammo {
     weight = 0
     value = 3
     id = "point44"
@@ -137,7 +154,7 @@ class Point44 extends Item {
     rarity = 3
 }
 
-class FivePoint56 extends Item {
+class FivePoint56 extends Ammo {
     weight = 0
     value = 2
     id = "fivePoint56"
@@ -145,12 +162,13 @@ class FivePoint56 extends Item {
     rarity = 3
 }
 
-class MiniNuke extends Item {
+class MiniNuke extends Ammo {
     weight = 6
     value = 100
     id = "miniNuke"
     category = "ammo"
     rarity = 6
+    rollExtraQuantity = () => (0)
 }
 
 

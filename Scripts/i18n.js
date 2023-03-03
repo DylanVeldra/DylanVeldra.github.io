@@ -1,4 +1,32 @@
-const currentLanguage = "fr"
+let currentLanguage = "fr"
+
+
+const switchLanguage = (language = null) => {
+    if (language) {
+        currentLanguage = language
+    }
+    else if (currentLanguage === "fr") {
+        currentLanguage = "en"
+    } else {
+        currentLanguage = "fr"
+    }
+    document.getElementById("switchLanguageButton").value = i18n[currentLanguage].ui.currentLanguage
+    document.getElementById("scavengerPerkLabel").textContent = i18n[currentLanguage].ui.scavenger
+    document.getElementById("ammo").value = i18n[currentLanguage].ui.ammo
+    document.getElementById("armor").value = i18n[currentLanguage].ui.armor
+    document.getElementById("beverage").value = i18n[currentLanguage].ui.beverage
+    document.getElementById("chem").value = i18n[currentLanguage].ui.chem
+    document.getElementById("clothing").value = i18n[currentLanguage].ui.clothing
+    document.getElementById("food").value = i18n[currentLanguage].ui.food
+    document.getElementById("foraging").value = i18n[currentLanguage].ui.foraging
+    document.getElementById("magazine").value = i18n[currentLanguage].ui.magazine
+    document.getElementById("material").value = i18n[currentLanguage].ui.material
+    document.getElementById("meleeWepon").value = i18n[currentLanguage].ui.meleeWeapon
+    document.getElementById("nukacola").value = i18n[currentLanguage].ui.nukacola
+    document.getElementById("oddAndValue").value = i18n[currentLanguage].ui.oddAndValue
+    document.getElementById("rangedWeapon").value = i18n[currentLanguage].ui.rangedWeapon
+    document.getElementById("thrownExplosiveWeapon").value = i18n[currentLanguage].ui.thrownExplosiveWeapon
+}
 
 const i18n = {
     fr: {
@@ -105,9 +133,42 @@ const i18n = {
                     desc: "Une petite ogive nucléaire tactique de la taille d’un bal- lon de football américain conçue pour être propulsée à une distance suffisante du tireur par un lance-obus. Les mini-bombes nucléaires sont extrêmement rares et présentes en petite quantité seulement."
                 }
             }
+        },
+        ui: {
+            currentLanguage: "Français",
+            scavenger: "Farfouilleur",
+            ammo: "Munitions",
+            armor: "Armure",
+            beverage: "Boisson",
+            chem: "Drogue",
+            clothing: "Vêtement",
+            food: "Nourriture",
+            foraging: "Ceuillette",
+            magazine: "Magazine",
+            meleeWeapon: "Arme de corps à corps",
+            nukacola: "Nuka-Cola",
+            oddAndValue: "Curiosités & objets de valeurs",
+            rangedWeapon: "Arme à distance",
+            thrownExplosiveWeapon: "Arme (Projectile/Explosif)"
         }
     },
     en: {
-
+        ui: {
+            currentLanguage: "English",
+            scavenger: "Scavenger",
+            ammo: "Ammo",
+            armor: "Armor",
+            beverage: "Beverage",
+            chem: "Chems",
+            clothing: "Clothing",
+            food: "Food",
+            foraging: "Foraging",
+            magazine: "Magazine",
+            meleeWeapon: "Melee weapon",
+            nukacola: "Nuka-Cola",
+            oddAndValue: "Oddities and Valuables",
+            rangedWeapon: "Ranged Weapons",
+            thrownExplosiveWeapon: "Thrown/Explosive Weapons"
+        }
     }
 }

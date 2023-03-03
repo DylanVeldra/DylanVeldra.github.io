@@ -1,7 +1,9 @@
 let luck = document.getElementById("luck");
+let scavengerPerk = document.getElementById("scavengerPerk");
 let results = document.getElementById("results");
 let npcLevel = document.getElementById("npcLevel");
 document.getElementById("defaultOpen").click();
+switchLanguage("fr")
 
 /**
  * 
@@ -19,6 +21,9 @@ function getStuff(lootTable, nD20 = 2, nLoots = 1, multiplierFactor = 1) {
 		printToResults((luck.checked ? "[LUCKY] " : "") + "1 Common Materials\n");
 		return;
 	}
+
+	console.log(scavengerPerk.value)
+
 	for (let n = 0; n < nLoots; n++) {
 		const result = getSum(rollDices(nD20, 20)) - nD20
 		/**
@@ -33,10 +38,10 @@ function getStuff(lootTable, nD20 = 2, nLoots = 1, multiplierFactor = 1) {
 		// 		result = Math.min(result + 6, (rollP * 20) - rollP);
 		// 	}
 		// }
-
 		let loot = lootTable[result];
+		const item = new loot.item()
 		let trueMultiplier = rollDie(multiplierFactor);
-		let itemCount = parseDiceString(loot.quantityToRoll) * trueMultiplier;
+		let itemCount = (parseDiceString(loot.quantityToRoll) + item.rollExtraQuantity()) * trueMultiplier;
 
 		/**
 		 * @Todo Magazine
@@ -44,7 +49,7 @@ function getStuff(lootTable, nD20 = 2, nLoots = 1, multiplierFactor = 1) {
 		// } else if (item.includes("$$$")) {
 		// 	item = getMagazine();
 		// }
-		printToResults(`${itemCount} ${(new loot.item()).getName(!!(itemCount - 1))}\n`);
+		printToResults(`${itemCount} ${item.getName(!!(itemCount - 1))}\n`);
 	}
 }
 /**
@@ -71,7 +76,6 @@ function rollDices(n, dieSize) {
  * @returns {Number}
  */
 function getSum(dicesArray) {
-	console.log(dicesArray)
 	return dicesArray.reduce((acc, cur) => (acc + cur), 0)
 }
 
@@ -85,7 +89,6 @@ function rollEffectsDices(n = 1) {
  * @returns 
  */
 function exctractTotalDEValueFromEffectDices(effectDices) {
-	console.log(effectDices)
 	return effectDices.reduce((acc, cur) => (
 		acc += cur.dEValue
 	), 0)

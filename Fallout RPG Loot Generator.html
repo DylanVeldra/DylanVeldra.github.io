@@ -14,12 +14,21 @@
 		<div>
 			<textarea class="screen" id="results" onChange="printToResults(results.value, true)" rows="20" cols="102" style="resize: none;"></textarea>
 			<img src="Images/fallout-title.png" width="150px">
+			<input id="switchLanguageButton" class="myButton" type="button" onclick="switchLanguage()" value="Français" style="vertical-align:top;">
 			<input class="myButton" type="button" onclick="clearList()" value="Clear List"  style="vertical-align:top;">
 			<label class="switch"  style="vertical-align:top;">
 				<input type="checkbox" id="luck">
 				<span class="slider round"></span>
 			</label>
 			<label style="color:#DDCC66; vertical-align:top;">Use Luck Point</label>
+
+			<label id="scavengerPerkLabel" style="color:#DDCC66; vertical-align:top;"></label>
+			<select id="scavengerPerk" class="myButton" style="vertical-align:top; width: 30px;">
+				<option>0</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+			</select>
 			<textarea id="converter" style="display:none;"></textarea>
 		</div>
 		
@@ -35,20 +44,20 @@
 			<table>
 				<tr>
 					<td>
-						<input value="Ammo" onclick="getStuff(listAmmo)" class="myButton" type="button">
-						<input value="Armor" onclick="getStuff(listArmor)" class="myButton" type="button">
-						<input value="Beverages" onclick="getStuff(listBeverage)" class="myButton" type="button">
-						<input value="Chems" onclick="getStuff(listChem)" class="myButton" type="button">
-						<input value="Clothing" onclick="getStuff(listClothing)" class="myButton" type="button">
-						<input value="Food" onclick="getStuff(listFood)" class="myButton" type="button">
-						<input value="Foraging" onclick="getStuff(listForaging, 1)" class="myButton" type="button">
-						<input value="Magazine" onclick="getMagazine(true)" class="myButton" type="button">
-						<input value="Materials" onclick="getStuff(listMaterials, 1)" class="myButton" type="button">
-						<input value="Melee Weapons" onclick="getStuff(listMelee)" class="myButton" type="button">
-						<input value="Nuka-Cola" onclick="getStuff(listNuka, 1)" class="myButton" type="button">
-						<input value="Oddities and Valuables" onclick="getStuff(listOdd, 3)" class="myButton" type="button">
-						<input value="Ranged Weapons" onclick="getStuff(listRange)" class="myButton" type="button">
-						<input value="Thrown/Explosive Weapons" onclick="getStuff(listThrown)" class="myButton" type="button">
+						<input id="ammo" value="Ammo" onclick="getStuff(listAmmo)" class="myButton" type="button">
+						<input id="armor" value="Armor" onclick="getStuff(listArmor)" class="myButton" type="button">
+						<input id="beverage" value="Beverages" onclick="getStuff(listBeverage)" class="myButton" type="button">
+						<input id="chem" value="Chems" onclick="getStuff(listChem)" class="myButton" type="button">
+						<input id="clothing" value="Clothing" onclick="getStuff(listClothing)" class="myButton" type="button">
+						<input id="food" value="Food" onclick="getStuff(listFood)" class="myButton" type="button">
+						<input id="foraging" value="Foraging" onclick="getStuff(listForaging, 1)" class="myButton" type="button">
+						<input id="magazine" value="Magazine" onclick="getMagazine(true)" class="myButton" type="button">
+						<input id="material" value="Materials" onclick="getStuff(listMaterials, 1)" class="myButton" type="button">
+						<input id="meleeWepon" value="Melee Weapons" onclick="getStuff(listMelee)" class="myButton" type="button">
+						<input id="nukacola" value="Nuka-Cola" onclick="getStuff(listNuka, 1)" class="myButton" type="button">
+						<input id="oddAndValue" value="Oddities and Valuables" onclick="getStuff(listOdd, 3)" class="myButton" type="button">
+						<input id="rangedWeapon" value="Ranged Weapons" onclick="getStuff(listRange)" class="myButton" type="button">
+						<input id="thrownExplosiveWeapon" value="Thrown/Explosive Weapons" onclick="getStuff(listThrown)" class="myButton" type="button">
 					</td>
 				</tr>
 			</table>
@@ -185,7 +194,7 @@
 	}
 
 	.screen {
-		animation:colorPulse 5s infinite ease-in-out;
+		animation: colorPulse 5s infinite ease-in-out;
 		background-image:radial-gradient(#444, #111);
 		box-shadow:0 0 5vmin 1vmin #000 inset;
 		box-sizing:border-box;
@@ -197,7 +206,6 @@
 		width:100%;
 		border:5px solid #333;
 		border-radius:20px;
-		margins:10px;
 		-ms-overflow-style: none;
 		scrollbar-width: none;
 	}		
